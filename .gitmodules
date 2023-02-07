@@ -1,0 +1,12 @@
+[submodule "libs/cxxopts"]
+	path = libs/cxxopts
+	url = https://github.com/jarro2783/cxxopts
+[submodule "libs/linalg"]
+	path = libs/linalg
+	url = https://github.com/sgorsten/linalg.git
+[submodule "libs/stb"]
+	path = libs/stb
+	url = https://github.com/nothings/stb.git
+[submodule "libs/tinyobjloader"]
+	path = libs/tinyobjloader
+	url = https://github.com/tinyobjloader/tinyobjloader
