@@ -1,6 +1,6 @@
 # Computer graphics in Game development course
 
-This repo contains a template for Computer graphics in Game development labs (spring 2023)
+This repo contains a template for Computer graphics in Game development labs
 
 ## Pre-requirements
 
