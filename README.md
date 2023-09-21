@@ -5,10 +5,12 @@ This repo contains a template for Computer graphics in Game development labs
 ## Pre-requirements
 
 - Version control: [Git](https://git-scm.com/)
-- C++ compiler: **MSVC**, Clang, GCC (C++17 compatible)
 - Build automation: [CMake](https://cmake.org/download/)
-- C++ IDE: [Visual Studio Community](https://visualstudio.microsoft.com/downloads/), [CLion](https://www.jetbrains.com/clion/)
-- DirectX related: [Windows SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/)
+- C++ compiler: MSVC on Windows, Clang on MacOS, GCC on Linux (C++17 compatible)
+- [OpenMP library](https://www.openmp.org/)
+- C++ IDE: [CLion](https://www.jetbrains.com/clion/)
+
+For DirectX12 you need a Windows machine or VM with installed software and [Windows SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/)
 
 ## How to build the solution
 
@@ -19,7 +21,7 @@ Go to the project folder and run the next command:
 ```sh
 mkdir Build
 cd Build
-cmake .. -A x64
+cmake ..
 ```
 
 ## Third-party tools and data

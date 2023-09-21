@@ -5,10 +5,13 @@
 #include <functional>
 #include <iostream>
 #include <linalg.h>
+#include <limits>
 #include <memory>
 
 
 using namespace linalg::aliases;
+
+static constexpr float DEFAULT_DEPTH = std::numeric_limits<float>::max();
 
 namespace cg::renderer
 {
@@ -22,14 +25,14 @@ namespace cg::renderer
 				std::shared_ptr<resource<RT>> in_render_target,
 				std::shared_ptr<resource<float>> in_depth_buffer = nullptr);
 		void clear_render_target(
-				const RT& in_clear_value, const float in_depth = FLT_MAX);
+				const RT& in_clear_value, const float in_depth = DEFAULT_DEPTH);
 
 		void set_vertex_buffer(std::shared_ptr<resource<VB>> in_vertex_buffer);
 		void set_index_buffer(std::shared_ptr<resource<unsigned int>> in_index_buffer);
 
 		void set_viewport(size_t in_width, size_t in_height);
 
-		void draw(size_t num_vertexes, size_t vertex_offest);
+		void draw(size_t num_vertexes, size_t vertex_offset);
 
 		std::function<std::pair<float4, VB>(float4 vertex, VB vertex_data)> vertex_shader;
 		std::function<cg::color(const VB& vertex_data, const float z)> pixel_shader;
