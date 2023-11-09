@@ -7,5 +7,5 @@
 
 namespace cg::utils
 {
-	void save_resource(cg::resource<cg::unsigned_color>& render_target, std::filesystem::path filepath);
+	void save_resource(cg::resource<cg::unsigned_color>& render_target, const std::filesystem::path& filepath);
 }
