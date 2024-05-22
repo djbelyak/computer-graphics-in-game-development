@@ -46,7 +46,7 @@ namespace cg::renderer
 		size_t width = 1920;
 		size_t height = 1080;
 
-		float edge_function(float2 a, float2 b, float2 c);
+		int edge_function(int2 a, int2 b, int2 c);
 		bool depth_test(float z, size_t x, size_t y);
 	};
 
@@ -96,11 +96,11 @@ namespace cg::renderer
 	}
 
 	template<typename VB, typename RT>
-	inline float
-	rasterizer<VB, RT>::edge_function(float2 a, float2 b, float2 c)
+	inline int
+	rasterizer<VB, RT>::edge_function(int2 a, int2 b, int2 c)
 	{
 		// TODO Lab: 1.05 Implement `cg::renderer::rasterizer::edge_function` method
-		return 0.f;
+		return 0;
 	}
 
 	template<typename VB, typename RT>
