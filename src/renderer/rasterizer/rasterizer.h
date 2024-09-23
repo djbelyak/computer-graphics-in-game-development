@@ -106,7 +106,6 @@ namespace cg::renderer
 	template<typename VB, typename RT>
 	inline bool rasterizer<VB, RT>::depth_test(float z, size_t x, size_t y)
 	{
-		// TODO Lab: 1.06 Implement `depth_test` function of `cg::renderer::rasterizer` class
 		if (!depth_buffer)
 		{
 			return true;
