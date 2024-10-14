@@ -6,7 +6,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
       - name: Build labs
@@ -21,7 +21,7 @@ jobs:
           .\build\Release\Rasterization.exe --model_path models\z_test.obj --result_path rasterization_z_test.png
           .\build\Release\Rasterization.exe --model_path models\CornellBox-Original.obj --result_path rasterization_CornellBox-Original.png
       - name: Upload rasterization images
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Rasterization images
           path: rasterization_*.png
@@ -31,7 +31,7 @@ jobs:
           .\build\Release\Raytracing.exe --model_path models\CornellBox-Original.obj --result_path raytracing_CornellBox-Original_1rpp_d3.png --camera_position 0.0,1.0,2.0 --accumulation_num 1 --raytracing_depth 3
           .\build\Release\Raytracing.exe --model_path models\CornellBox-Original.obj --result_path raytracing_CornellBox-Original_16rpp_d3.png --camera_position 0.0,1.0,2.0 --accumulation_num 16 --raytracing_depth 3
       - name: Upload raytracing images
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Raytracing images
           path: raytracing_*.png
@@ -40,7 +40,7 @@ jobs:
           cp build/Release/DirectX12.exe DirectX12.exe
           cp build/shaders.hlsl shaders.hlsl
       - name: Upload DirectX 12 distro
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: DirectX12 distro
           path: |
