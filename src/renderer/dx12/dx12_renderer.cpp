@@ -90,19 +90,19 @@ void cg::renderer::dx12_renderer::create_root_signature(const D3D12_STATIC_SAMPL
 	// TODO Lab: 3.05 Create a descriptor table and a root signature
 }
 
-std::filesystem::path cg::renderer::dx12_renderer::get_shader_path(const std::string& shader_name)
+std::filesystem::path cg::renderer::dx12_renderer::get_shader_path()
 {
 	// TODO Lab: 3.05 Compile shaders
 	return "";
 }
 
-ComPtr<ID3DBlob> cg::renderer::dx12_renderer::compile_shader(const std::filesystem::path& shader_path, const std::string& entrypoint, const std::string& target)
+ComPtr<ID3DBlob> cg::renderer::dx12_renderer::compile_shader(const std::string& entrypoint, const std::string& target)
 {
 	// TODO Lab: 3.05 Compile shaders
 	return nullptr;
 }
 
-void cg::renderer::dx12_renderer::create_pso(const std::string& shader_name)
+void cg::renderer::dx12_renderer::create_pso()
 {
 	// TODO Lab: 3.05 Compile shaders
 	// TODO Lab: 3.05 Setup a PSO descriptor and create a PSO

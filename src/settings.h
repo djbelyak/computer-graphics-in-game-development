@@ -27,6 +27,8 @@ namespace cg
 
 		unsigned raytracing_depth;
 		unsigned accumulation_num;
+
+		std::filesystem::path shader_path;
 	};
 
 }// namespace cg
