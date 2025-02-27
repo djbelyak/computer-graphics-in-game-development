@@ -19,48 +19,69 @@ cg::world::camera::~camera() {}
 
 void cg::world::camera::set_position(float3 in_position)
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
+	// Lab: 1.04 Implement `cg::world::camera` class
+	position = in_position;
 }
 
 void cg::world::camera::set_theta(float in_theta)
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
+	// Lab: 1.04 Implement `cg::world::camera` class
+	theta = in_theta * static_cast<float>(M_PI) / 180.f;
 }
 
 void cg::world::camera::set_phi(float in_phi)
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
+	// Lab: 1.04 Implement `cg::world::camera` class
+	phi = in_phi * static_cast<float>(M_PI) / 180.f;
 }
 
 void cg::world::camera::set_angle_of_view(float in_aov)
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
+	// Lab: 1.04 Implement `cg::world::camera` class
+	angle_of_view = in_aov * static_cast<float>(M_PI) / 180.f;
 }
 
 void cg::world::camera::set_height(float in_height)
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
+	// Lab: 1.04 Implement `cg::world::camera` class
+	height = in_height;
+	aspect_ratio = width / height;
 }
 
 void cg::world::camera::set_width(float in_width)
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
+	// Lab: 1.04 Implement `cg::world::camera` class
+	width = in_width;
+	aspect_ratio = width / height;
 }
 
 void cg::world::camera::set_z_near(float in_z_near)
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
+	// Lab: 1.04 Implement `cg::world::camera` class
+	z_near = in_z_near;
 }
 
 void cg::world::camera::set_z_far(float in_z_far)
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
+	// Lab: 1.04 Implement `cg::world::camera` class
+	z_far = in_z_far;
 }
 
 const float4x4 cg::world::camera::get_view_matrix() const
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
-	return float4x4{};
+	// Lab: 1.04 Implement `cg::world::camera` class
+	float3 up{0.f, 1.f, 0.f};
+	float3 eye = position + get_direction();
+
+	float3 z_axis = normalize(position - eye);
+	float3 x_axis = normalize(cross(up, z_axis));
+	float3 y_axis = cross(z_axis, x_axis);
+	return float4x4{
+			{x_axis.x, y_axis.x, z_axis.x, 0},
+			{x_axis.y, y_axis.y, z_axis.y, 0},
+			{x_axis.z, y_axis.z, z_axis.z, 0},
+			{-dot(x_axis, position), -dot(y_axis, position), -dot(z_axis, position), 1}
+	};
 }
 
 #ifdef DX12
@@ -85,40 +106,49 @@ const DirectX::XMMATRIX camera::get_dxm_mvp_matrix() const
 
 const float4x4 cg::world::camera::get_projection_matrix() const
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
-	return float4x4{};
+	// Lab: 1.04 Implement `cg::world::camera` class
+	float f = 1.f / std::tanf(angle_of_view / 2.f);
+	return float4x4{
+			{f / aspect_ratio, 0, 0, 0},
+			{0, f, 0, 0},
+			{0, 0, z_far / (z_near - z_far), -1},
+			{0, 0, (z_far * z_near) / (z_near - z_far), 0}};
 }
 
 const float3 cg::world::camera::get_position() const
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
-	return float3{};
+	// Lab: 1.04 Implement `cg::world::camera` class
+	return position;
 }
 
 const float3 cg::world::camera::get_direction() const
 {
 	// TODO Lab: 1.04 Implement `cg::world::camera` class
-	return float3{};
+	return float3{
+			std::sin(theta) * std::cos(phi),
+			std::sin(phi),
+			-std::cos(theta) * std::cos(phi)
+	};
 }
 
 const float3 cg::world::camera::get_right() const
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
-	return float3{};
+	// Lab: 1.04 Implement `cg::world::camera` class
+	return cross(get_direction(), float3{0.f,1.f,0.f});
 }
 
 const float3 cg::world::camera::get_up() const
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
-	return float3{};
+	// Lab: 1.04 Implement `cg::world::camera` class
+	return cross(get_right(), get_direction());
 }
 const float camera::get_theta() const
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
-	return 0.f;
+	// Lab: 1.04 Implement `cg::world::camera` class
+	return theta;
 }
 const float camera::get_phi() const
 {
-	// TODO Lab: 1.04 Implement `cg::world::camera` class
-	return 0.f;
+	// Lab: 1.04 Implement `cg::world::camera` class
+	return phi;
 }
