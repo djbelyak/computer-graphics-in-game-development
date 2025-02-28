@@ -11,14 +11,14 @@ void cg::renderer::rasterization_renderer::init()
 	render_target = std::make_shared<cg::resource<cg::unsigned_color>>(settings->width, settings->height);
 
 	// Lab: 1.06 Add depth buffer in `cg::renderer::rasterization_renderer`
-	depth_buffer = std::make_shared<cg::resource<float>>(settings->width, settings->depth)
+	depth_buffer = std::make_shared<cg::resource<float>>(settings->width, settings->height);
 
-	rasterizer->set_render_target(render_target);
+	rasterizer->set_render_target(render_target, depth_buffer);
 	// Lab: 1.03 Adjust `cg::renderer::rasterization_renderer` class to consume `cg::world::model`
 	model = std::make_shared<cg::world::model>();
 	model->load_obj(settings->model_path);
 
-	for (size_t i = 0; i < model->get_index_buffers.size(); ++i) {
+	for (size_t i = 0; i < model->get_index_buffers().size(); ++i) {
 		auto vertex_buffers_size = model->get_vertex_buffers()[i]->size_bytes();
 		auto index_buffers_size = model->get_index_buffers()[i]->size_bytes();
 
@@ -53,25 +53,25 @@ void cg::renderer::rasterization_renderer::render()
 	float4x4 matrix = mul(
 			camera->get_projection_matrix(),
 			camera->get_view_matrix(),
-			model->get_world_matrix(), );
+			model->get_world_matrix());
 
-	rasterizer->vertex_shader = [&]{float4 vertex, cg::vertex vertex_data} {
+	rasterizer->vertex_shader = [&](float4 vertex, cg::vertex vertex_data) {
 		
 		float4 processed = mul(matrix, vertex);
 
-		retrun std::make_pair(processed, vertex_data);
-	}
+		return std::make_pair(processed, vertex_data);
+	};
 	// --- Lab 1.05 segment
 	rasterizer->pixel_shader = [](cg::vertex vertex_data, float z) {
 		return cg::color::from_float3(vertex_data.ambient);
-	}
+	};
 
 	// ---
 
 	// Lab: 1.02 Implement image clearing & saving in `cg::renderer::rasterization_renderer` class
 	auto start = std::chrono::high_resolution_clock::now();
 
-	rasterizer->clear_render_target({255, 255, 255});
+	rasterizer->clear_render_target({0, 0, 0});
 
 	auto stop = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float, std::milli> duration = stop - start;

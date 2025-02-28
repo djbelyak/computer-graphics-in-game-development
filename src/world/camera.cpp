@@ -107,7 +107,7 @@ const DirectX::XMMATRIX camera::get_dxm_mvp_matrix() const
 const float4x4 cg::world::camera::get_projection_matrix() const
 {
 	// Lab: 1.04 Implement `cg::world::camera` class
-	float f = 1.f / std::tanf(angle_of_view / 2.f);
+	float f = 1.f / tanf(angle_of_view / 2.f);
 	return float4x4{
 			{f / aspect_ratio, 0, 0, 0},
 			{0, f, 0, 0},

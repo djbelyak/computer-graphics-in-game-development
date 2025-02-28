@@ -177,7 +177,7 @@ void model::fill_buffers(const std::vector<tinyobj::shape_t>& shapes, const tiny
 
 				if (index_map.count(idx_tuple) == 0) {
 					cg::vertex& vertex = vertex_buffer->item(vertex_buffer_id);
-					const auto material = materials[mesh.material_ids[f]];
+					const auto& material = materials[mesh.material_ids[f]];
 
 					fill_vertex_data(vertex, attrib, idx, normal, material);
 
@@ -194,7 +194,6 @@ void model::fill_buffers(const std::vector<tinyobj::shape_t>& shapes, const tiny
 			textures[s] = base_folder / materials[mesh.material_ids[0]].diffuse_texname;
 		}
 	}
-	textures.resize(shapes.size());
 }
 
 
