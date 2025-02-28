@@ -193,11 +193,6 @@ void model::fill_buffers(const std::vector<tinyobj::shape_t>& shapes, const tiny
 		if(!materials[mesh.material_ids[0]].diffuse_texname.empty()) {
 			textures[s] = base_folder / materials[mesh.material_ids[0]].diffuse_texname;
 		}
-
-		vertex_buffers.push_back(
-				std::make_shared<cg::resource<cg::vertex>>(vertex_buffer_size));
-		index_buffers.push_back(
-				std::make_shared<cg::resource<unsigned int>>(index_buffer_size));
 	}
 	textures.resize(shapes.size());
 }

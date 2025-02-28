@@ -173,7 +173,7 @@ namespace cg::renderer
 				}
 			}
 		}
-		// TODO Lab: 1.05 Add `Rasterization` and `Pixel shader` stages to `draw` method of `cg::renderer::rasterizer`
+		// Lab: 1.05 Add `Rasterization` and `Pixel shader` stages to `draw` method of `cg::renderer::rasterizer`
 
 		
 
