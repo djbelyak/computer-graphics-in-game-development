@@ -40,6 +40,4 @@ add_executable(DirectX12 WIN32 src/win_main.cpp src/renderer/dx12/dx12_renderer.
 target_compile_definitions(DirectX12 PUBLIC DX12 WIN32_LEAN_AND_MEAN NOMINMAX _CRT_SECURE_NO_WARNINGS _UNICODE UNICODE)
 target_include_directories(DirectX12 PRIVATE ${INCLUDE})
 target_link_libraries(DirectX12 d3d12.lib dxgi.lib d3dcompiler.lib dxguid.lib)
-# Copy shader as a source to the binary directory
-configure_file(shaders/shaders.hlsl ${CMAKE_CURRENT_BINARY_DIR}/shaders.hlsl COPYONLY)
 set_property(TARGET DirectX12 PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")

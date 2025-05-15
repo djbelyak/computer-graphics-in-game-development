@@ -38,12 +38,11 @@ jobs:
       - name: Prepare a DX12 distro
         run: |
           cp build/Release/DirectX12.exe DirectX12.exe
-          cp build/shaders.hlsl shaders.hlsl
       - name: Upload DirectX 12 distro
         uses: actions/upload-artifact@v4
         with:
           name: DirectX12 distro
           path: |
             DirectX12.exe
-            shaders.hlsl
+            shaders/
             models/
