@@ -91,3 +91,13 @@ void cg::renderer::renderer::move_pitch(float delta)
 {
 	camera->set_phi(camera->get_phi() + delta);
 }
+
+void cg::renderer::renderer::load_model()
+{
+	// TODO Lab: 1.03 Adjust `cg::renderer::rasterization_renderer` and `cg::renderer::renderer` classes to consume `cg::world::model`
+}
+
+void cg::renderer::renderer::load_camera()
+{
+	// TODO Lab: 1.04 Setup an instance of camera `cg::world::camera` class in `cg::renderer::renderer` and `cg::renderer::rasterization_renderer` 
+}

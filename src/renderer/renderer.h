@@ -28,6 +28,9 @@ namespace cg::renderer
 		void move_yaw(float delta = 0.f);
 		void move_pitch(float delta = 0.f);
 
+		void load_model();
+		void load_camera();
+
 	protected:
 		std::shared_ptr<cg::settings> settings;
 
