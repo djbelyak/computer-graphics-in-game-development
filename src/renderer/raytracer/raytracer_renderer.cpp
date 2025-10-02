@@ -1,6 +1,7 @@
 #include "raytracer_renderer.h"
 
 #include "utils/resource_utils.h"
+#include "utils/timer.h"
 
 #include <iostream>
 

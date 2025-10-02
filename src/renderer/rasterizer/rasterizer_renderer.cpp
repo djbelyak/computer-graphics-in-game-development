@@ -1,6 +1,7 @@
 #include "rasterizer_renderer.h"
 
 #include "utils/resource_utils.h"
+#include "utils/timer.h"
 
 
 void cg::renderer::rasterization_renderer::init()
